@@ -12,7 +12,8 @@ find_package(ament_cmake_python REQUIRED)
 find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(moveit_ros_planning_interface REQUIRED)
+find_package(rclcpp REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,8 +27,28 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+add_executable(test_moveit src/test_moveit.cpp)
+ament_target_dependencies(
+  test_moveit
+  rclcpp moveit_ros_planning_interface
+)
 
 
 ament_python_install_package(${PROJECT_NAME})
+
+# install python modules
+file(GLOB_RECURSE PY_LIST ${PROJECT_NAME}/[a-z]*.py) 
+install(PROGRAMS  
+  ${PY_LIST}
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# install cpp exe file
+install(TARGETS
+  test_moveit
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+
 ament_package()
 
