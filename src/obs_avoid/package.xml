@@ -15,6 +15,7 @@
 
   <depend>moveit_ros_planning_interface</depend>
   <depend>rclcpp</depend>
+  <depend>moveit_visual_tools</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

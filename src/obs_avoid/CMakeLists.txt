@@ -14,6 +14,7 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(moveit_visual_tools REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -27,12 +28,12 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(test_moveit src/test_moveit.cpp)
+add_executable(test_moveit src/test_moveit.cpp src/moveit_utils.cpp)
 ament_target_dependencies(
   test_moveit
-  rclcpp moveit_ros_planning_interface
+  rclcpp moveit_ros_planning_interface moveit_visual_tools
 )
-
+target_include_directories(test_moveit PUBLIC include)
 
 ament_python_install_package(${PROJECT_NAME})
 
