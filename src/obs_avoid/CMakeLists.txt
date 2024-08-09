@@ -35,14 +35,8 @@ ament_target_dependencies(
 )
 target_include_directories(test_moveit PUBLIC include)
 
-ament_python_install_package(${PROJECT_NAME})
 
-# install python modules
-file(GLOB_RECURSE PY_LIST ${PROJECT_NAME}/[a-z]*.py) 
-install(PROGRAMS  
-  ${PY_LIST}
-  DESTINATION lib/${PROJECT_NAME}
-)
+
 
 # install cpp exe file
 install(TARGETS
@@ -50,6 +44,18 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(
+  DIRECTORY launch models
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_python_install_package(${PROJECT_NAME})
+# install python modules
+file(GLOB_RECURSE PY_LIST ${PROJECT_NAME}/[a-z]*.py) 
+install(PROGRAMS  
+  ${PY_LIST}
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()
 

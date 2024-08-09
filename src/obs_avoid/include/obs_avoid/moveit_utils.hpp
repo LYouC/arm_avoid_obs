@@ -73,7 +73,7 @@ class MoveItUtils {
 
     bool MoveTo(geometry_msgs::msg::Pose targetPose);
 
-    inline bool Stop() { m_MoveGroup.stop(); }
+    inline void Stop() { m_MoveGroup.stop(); }
 
     void SetCollision(const std::vector<std::shared_ptr<Collision>>& collisions, std::string id);
 
