@@ -101,6 +101,16 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(os.path.join(get_package_share_directory(('rm_65_config')),'launch', 'gazebo_moveit_demo.launch.py'))
     )
     
+    tf_publisher = Node(package='tf2_ros', executable='static_transform_publisher',name="fixed_tf_broadcaster",
+                        arguments=[
+                            '--frame-id', 'world',
+                            '--child-frame-id', 'base_link',
+                            '--x', '1.0',
+                            # '1.0','0.0','0.0','0.0','0.0','0.0','1.0','base_link','world'
+                            ],
+    )
+
+    
     ld = LaunchDescription([
         # close_evt1,
         # close_evt2,
@@ -110,6 +120,7 @@ def generate_launch_description():
         load_joint_state_controller,
         load_joint_trajectory_controller,
         rm_65_gazebo_moveit,
+        # tf_publisher,
         # spawn_entity,
     ])
 

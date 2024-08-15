@@ -43,9 +43,29 @@ struct BoxCollision : public Collision {
     }
 };
 
+struct CylinderCollision : public Collision {
+    double CYLINDER_RADIUS = 0.0, CYLINDER_HEIGHT = 0.0;
+    shape_msgs::msg::SolidPrimitive Primitive;
+
+    CylinderCollision(double x, double y, double z, double radius, double height)
+        : Collision(x, y, z), CYLINDER_RADIUS(radius), CYLINDER_HEIGHT(height) {
+        Primitive.type = Primitive.CYLINDER;
+        Primitive.dimensions.resize(2);
+    }
+
+    virtual const shape_msgs::msg::SolidPrimitive& ToPrimitive() {
+        Primitive.dimensions[Primitive.CYLINDER_RADIUS] = CYLINDER_RADIUS;
+        Primitive.dimensions[Primitive.CYLINDER_HEIGHT] = CYLINDER_HEIGHT;
+        return Primitive;
+    }
+};
+
 class MoveItUtils {
   public:
-    MoveItUtils(std::shared_ptr<rclcpp::Node> node, std::string group_name) : m_MoveGroup(node, group_name) {}
+    MoveItUtils(std::shared_ptr<rclcpp::Node> node, std::string group_name) : m_MoveGroup(node, group_name) {
+        m_MoveGroup.setPlanningTime(5.0);
+        m_MoveGroup.setNumPlanningAttempts(5);
+    }
 
     /**
      * @brief change the rpy to quaternion
@@ -71,18 +91,25 @@ class MoveItUtils {
         return std::make_shared<BoxCollision>(x, y, z, boxX, boxY, boxZ);
     }
 
+    static std::shared_ptr<CylinderCollision> MakeCylinderCollision(
+        double x, double y, double z, double radius, double height) {
+        return std::make_shared<CylinderCollision>(x, y, z, radius, height);
+    }
+
     bool MoveTo(geometry_msgs::msg::Pose targetPose);
 
     inline void Stop() { m_MoveGroup.stop(); }
 
-    void SetCollision(const std::vector<std::shared_ptr<Collision>>& collisions, std::string id);
+    void SetCollision(const std::vector<std::shared_ptr<Collision>>& collisions, const std::string& id);
 
     double MoveTraj(const std::vector<geometry_msgs::msg::Pose>& waypoints,
                     int try_count = 50,
                     double jump_threshold = 0.0,
-                    double eef_step = 0.01);
+                    double eef_step = 0.01,
+                    bool avoid_collisions = true);
 
-  private:
+    void RemoveCollision(const std::string& id);
+
     moveit::planning_interface::MoveGroupInterface m_MoveGroup;
     moveit::planning_interface::PlanningSceneInterface m_Scene;
 };

@@ -16,6 +16,8 @@ find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(moveit_visual_tools REQUIRED)
 
+find_package(Eigen3 REQUIRED)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -35,6 +37,10 @@ ament_target_dependencies(
 )
 target_include_directories(test_moveit PUBLIC include)
 
+
+add_executable(test_transform test/test_transform.cpp)
+target_link_libraries(test_transform PUBLIC Eigen3::Eigen)
+target_include_directories(test_transform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 

@@ -1,6 +1,6 @@
 #include "obs_avoid/moveit_utils.hpp"
 
-void MoveItUtils::SetCollision(const std::vector<std::shared_ptr<Collision>>& collisions, std::string id) {
+void MoveItUtils::SetCollision(const std::vector<std::shared_ptr<Collision>>& collisions, const std::string& id) {
     moveit_msgs::msg::CollisionObject collision_object;
     collision_object.header.frame_id = "base_link";
     collision_object.id = id;
@@ -14,20 +14,33 @@ void MoveItUtils::SetCollision(const std::vector<std::shared_ptr<Collision>>& co
     m_Scene.applyCollisionObject(collision_object);
 }
 
+void MoveItUtils::RemoveCollision(const std::string& id){
+    moveit_msgs::msg::CollisionObject collision_object;
+    collision_object.header.frame_id = "base_link";
+    collision_object.id = id;
+    collision_object.operation = collision_object.REMOVE;
+    m_Scene.applyCollisionObject(collision_object);
+    m_MoveGroup.setJointValueTarget(m_MoveGroup.getCurrentJointValues());
+}
+
 double MoveItUtils::MoveTraj(const std::vector<geometry_msgs::msg::Pose>& waypoints,
                             int try_count,
                             double jump_threshold,
-                            double eef_step) {
+                            double eef_step,
+                            bool avoid_collisions) {
     moveit_msgs::msg::RobotTrajectory trajectory;
     double res = 0.0;
     for (int i = 0; i < try_count; i++) {
-        double fraction = m_MoveGroup.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
-        if (fraction > 0.9) {
+        double fraction = m_MoveGroup.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory,avoid_collisions);
+        if (fraction > 0.95) {
             m_MoveGroup.execute(trajectory);
             return fraction;
         }
         res = res < fraction ? fraction : res;
     }
+
+    
+
     return res;
 }
 
@@ -36,7 +49,8 @@ bool MoveItUtils::MoveTo(geometry_msgs::msg::Pose targetPose) {
 
     // Create a plan to that target pose
     moveit::planning_interface::MoveGroupInterface::Plan plan_msg;
-    auto const ok = static_cast<bool>(m_MoveGroup.plan(plan_msg));
+    bool ok = (m_MoveGroup.plan(plan_msg) == moveit::core::MoveItErrorCode::SUCCESS);
+    // auto const ok = static_cast<bool>(m_MoveGroup.plan(plan_msg));
 
     // Execute the plan
     if (ok) {

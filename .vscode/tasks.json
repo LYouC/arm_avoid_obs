@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "detail": "编译",
+            "type": "shell",
+            "command": "colcon",
+            "args": [
+                "build",
+                "--packages-select",
+                "obs_avoid",
+                "--symlink-install"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build and run",
+            "detail": "编译并且运行",
+            "type": "shell",
+            "command": "source install/setup.bash; ros2 run obs_avoid test_moveit ",
+            "dependsOn": [
+                "build"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "run",
+            "detail": "运行之前编译好的文件",
+            "type": "shell",
+            "command": "source install/setup.bash; ros2 run obs_avoid test_moveit ",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
