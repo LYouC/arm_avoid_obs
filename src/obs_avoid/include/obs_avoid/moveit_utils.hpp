@@ -63,8 +63,8 @@ struct CylinderCollision : public Collision {
 class MoveItUtils {
   public:
     MoveItUtils(std::shared_ptr<rclcpp::Node> node, std::string group_name) : m_MoveGroup(node, group_name) {
-        m_MoveGroup.setPlanningTime(5.0);
-        m_MoveGroup.setNumPlanningAttempts(5);
+        m_MoveGroup.setPlanningTime(15.0);
+        m_MoveGroup.setNumPlanningAttempts(10);
     }
 
     /**

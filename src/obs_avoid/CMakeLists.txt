@@ -37,7 +37,7 @@ ament_target_dependencies(
 )
 target_include_directories(test_moveit PUBLIC include)
 
-add_executable(avoid_obs src/avoid_obs.cpp src/moveit_utils.cpp)
+add_executable(avoid_obs src/avoid_obs.cpp src/moveit_utils.cpp src/Obstacle.cpp)
 ament_target_dependencies(
   avoid_obs
   rclcpp moveit_ros_planning_interface moveit_visual_tools std_msgs

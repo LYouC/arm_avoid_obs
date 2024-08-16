@@ -27,8 +27,15 @@ double MoveItUtils::MoveTraj(const std::vector<geometry_msgs::msg::Pose>& waypoi
                             int try_count,
                             double jump_threshold,
                             double eef_step,
-                            bool avoid_collisions) {
+                            bool avoid_collisions) 
+{
+    if(!MoveTo(waypoints.front())){
+        return 0.0;
+    }
     moveit_msgs::msg::RobotTrajectory trajectory;
+    // trajcetory.joint_trajectory.header.frame_id = "base_link";
+    // trajectory.
+    m_MoveGroup.setPoseTarget(waypoints.back());
     double res = 0.0;
     for (int i = 0; i < try_count; i++) {
         double fraction = m_MoveGroup.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory,avoid_collisions);
@@ -38,9 +45,7 @@ double MoveItUtils::MoveTraj(const std::vector<geometry_msgs::msg::Pose>& waypoi
         }
         res = res < fraction ? fraction : res;
     }
-
     
-
     return res;
 }
 

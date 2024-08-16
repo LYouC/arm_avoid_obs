@@ -4,6 +4,7 @@
 import rclpy
 from rclpy.node import Node
 import rclpy.time
+import rclpy.timer
 from sensor_msgs.msg import Image 
 import numpy as np
 import cv2
@@ -11,12 +12,10 @@ from message_filters import ApproximateTimeSynchronizer, Subscriber
 from cv_bridge import CvBridge
 from sensor_msgs.msg import CameraInfo
 from obs_avoid.model_utils import MaskRCNNModel
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray,Bool
 import time
 import math
 
-#TODO 接收camer_info,处理好后就取消订阅
-#TODO 
 
 class TestNode(Node):
     def __init__(self):
@@ -24,6 +23,7 @@ class TestNode(Node):
         
         img_sub = Subscriber(self,Image, '/camera/image_raw')
         depth_sub = Subscriber(self,Image, '/camera/depth/image_raw')
+        self.enable_sub = self.create_subscription(Bool, '/enable_model', self.enable_model_callback, 1)
         self.ats = ApproximateTimeSynchronizer([img_sub, depth_sub], 2, 0.1)
         self.ats.registerCallback(self.image_callback)
         self.depth_info_sub = self.create_subscription(CameraInfo, '/camera/depth/camera_info', self.depth_info_callback, 1)
@@ -42,6 +42,12 @@ class TestNode(Node):
         self.pre_time = 0
         
         self.can_info = False
+        
+        self.need_model = True
+    
+    def enable_model_callback(self, msg:Bool):
+        self.need_model = msg.data
+        self.get_logger().info(f'need_model: {self.need_model}')
     
     def info(self,msg):
         if self.can_info:
@@ -55,18 +61,19 @@ class TestNode(Node):
         # cv2.imwrite('abc.jpg', self.img)
         # self.get_logger().info('Image saved as abc.jpg')
         
-        depth_img = np.clip(self.depth, 0, 1)
-        depth_array_norm = cv2.normalize(depth_img, None, 0, 255, cv2.NORM_MINMAX)
+        #depth_img = np.clip(self.depth, 0, 1)
+        #depth_array_norm = cv2.normalize(depth_img, None, 0, 255, cv2.NORM_MINMAX)
         # self.get_logger().info('Depth image saved as depth_image.jpg')
         # cv2.imwrite('depth_image.jpg', depth_array_norm)
         
         res = self.model.predict(self.img)
-        if res is None or self.K_mat is None:
+        if not self.need_model or res is None or self.K_mat is None:
             return
         new_res = sorted(res, key=lambda x: x[0])
         
         # 判断是否需要重新发布
-        out_time = time.time() - self.pre_time > 5.0
+        out_time = time.time() - self.pre_time > 8.0
+        new_res = [item for item in new_res if item[4] == 40]
         need_repub = False
         if self.pre_res is None or len(self.pre_res)!= len(new_res):
             need_repub = True
@@ -74,11 +81,13 @@ class TestNode(Node):
             for i in range(len(new_res)):
                 new_item = new_res[i]
                 pre_item = self.pre_res[i]
-                tolerance = 0.15
-                for i in range(len(new_item)):
+                tolerance = 10
+                for i in range(4):
                     if abs(new_item[i]-pre_item[i]) > tolerance:
                         need_repub = True
                         break
+                if new_item[5]!= pre_item[5]:
+                    need_repub = True
                 if need_repub:
                     break
         self.pre_res = new_res  
@@ -98,7 +107,7 @@ class TestNode(Node):
 
         for item in new_res:
             px,py,w,h,label,score = item
-            if label == 0 and w*h < 1600:
+            if label == 0 and w*h < 1600 and label != 40:
                 continue
             # 获取对应位置深度信息
             pos0 = self.get_pos(int(px),int(py))
@@ -124,6 +133,9 @@ class TestNode(Node):
             
             msg.data.extend([pos0[0],pos0[1],z,radius,height,label,score])
         self.pub.publish(msg)
+        
+        # wait 1 second
+        time.sleep(1)
     
     def depth_info_callback(self,msg:CameraInfo):
         # self.depth_sub.

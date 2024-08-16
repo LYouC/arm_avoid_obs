@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
     rclcpp::NodeOptions node_options;
     node_options.automatically_declare_parameters_from_overrides(true);
-    auto avoid_obs_node = std::make_shared<AvoidObs>("avoid_obs", node_options,"rm_group");
+    auto avoid_obs_node = std::make_shared<AvoidObsNode>("avoid_obs", node_options,"rm_group");
     
     avoid_obs_node->GetMoveitUtils().SetCollision(
         {
