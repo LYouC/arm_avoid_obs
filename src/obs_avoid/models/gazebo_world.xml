@@ -858,10 +858,10 @@
       <pose>-0.428962 -1.17876 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1182 368000000</sim_time>
-      <real_time>570 892437184</real_time>
-      <wall_time>1723204853 348020652</wall_time>
-      <iterations>533864</iterations>
+      <sim_time>1212 579000000</sim_time>
+      <real_time>30 311992297</real_time>
+      <wall_time>1723616173 894755111</wall_time>
+      <iterations>30211</iterations>
       <model name='Table'>
         <pose>0 -0.47 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -873,41 +873,41 @@
         </link>
       </model>
       <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh'>
-        <pose>0.20253 -0.226704 1.01409 0.024823 -0.034242 0.064434</pose>
+        <pose>0.20253 -0.226704 1.0141 0.02482 -0.034259 0.064434</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.20253 -0.226704 1.01409 0.024823 -0.034242 0.064434</pose>
+          <pose>0.20253 -0.226704 1.0141 0.02482 -0.034259 0.064434</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
+          <acceleration>-4.6e-05 -0.00021 -0.005855 -0.233922 0.05126 0</acceleration>
+          <wrench>-4.6e-05 -0.00021 -0.005855 0 -0 0</wrench>
         </link>
       </model>
       <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_0'>
-        <pose>-0.007233 -0.316634 1.0141 0.02482 -0.03425 0.002772</pose>
+        <pose>-0.007233 -0.316634 1.01409 0.024828 -0.034233 0.002772</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>-0.007233 -0.316634 1.0141 0.02482 -0.03425 0.002772</pose>
+          <pose>-0.007233 -0.316634 1.01409 0.024828 -0.034233 0.002772</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -9.8 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_0_clone'>
-        <pose>-0.250361 -0.218975 1.01409 0.024824 -0.034248 0.002773</pose>
+        <pose>-0.250361 -0.218975 1.01409 0.024825 -0.034246 0.002773</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>-0.250361 -0.218975 1.01409 0.024824 -0.034248 0.002773</pose>
+          <pose>-0.250361 -0.218975 1.01409 0.024825 -0.034246 0.002773</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -9.8 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <model name='camera'>
-        <pose>-0 0 -0 0 -0 0</pose>
+        <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-0 -1.2 1.25 0 -0 1.57</pose>
-          <velocity>0 -0 0 0 -0 0</velocity>
+          <pose>0 -1.2 1.25 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
@@ -926,46 +926,46 @@
         <pose>0 -0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Link1'>
-          <pose>-0 0 1.0905 0 0 -1e-06</pose>
-          <velocity>0 -0 -0 0 -0 0</velocity>
+          <pose>-0 0 1.0905 0 -0 2e-06</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
           <acceleration>0 -0 -0 0 -0 0</acceleration>
           <wrench>0 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link2'>
-          <pose>-0 -0 1.0905 -1.57087 -1.57079 -3.14151</pose>
+          <pose>-0 -0 1.0905 -1.57086 -1.57079 -3.14151</pose>
           <velocity>-0 -0 -0 0 -0 0</velocity>
           <acceleration>-3e-06 -0 -0 0 -0 0</acceleration>
           <wrench>-3e-06 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link3'>
-          <pose>-2e-06 -0 1.3465 -1.5708 1e-05 -3.14158</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>-6e-06 -0 0 0 -0 0</acceleration>
-          <wrench>-2e-06 -0 0 0 -0 0</wrench>
+          <pose>-2e-06 -0 1.3465 -1.5708 1.6e-05 -3.14158</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-6e-06 -0 -0 0 -0 0</acceleration>
+          <wrench>-2e-06 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link4'>
-          <pose>-4e-06 -0 1.5565 4e-06 1e-05 -3.14159</pose>
+          <pose>-5e-06 -0 1.5565 4e-06 1.6e-05 -3.14158</pose>
           <velocity>-0 -0 -0 0 -0 0</velocity>
-          <acceleration>-7e-06 -0 -0 0 -0 0</acceleration>
+          <acceleration>-9e-06 -0 -0 0 -0 0</acceleration>
           <wrench>-2e-06 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link5'>
-          <pose>-4e-06 -0 1.5565 -1.5708 1e-05 -3.14159</pose>
+          <pose>-5e-06 -0 1.5565 -1.5708 2e-05 -3.14158</pose>
           <velocity>-0 -0 -0 0 -0 0</velocity>
-          <acceleration>-2.1e-05 -0 -0 0 -0 0</acceleration>
+          <acceleration>-2.3e-05 -0 -0 0 -0 0</acceleration>
           <wrench>-5e-06 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link6'>
-          <pose>-5e-06 -0 1.7005 4e-06 1e-05 -3.14159</pose>
+          <pose>-8e-06 -0 1.7005 4e-06 2e-05 -3.14158</pose>
           <velocity>-0 -0 -0 0 -0 0</velocity>
-          <acceleration>-3.8e-05 -0 -0 0 -0 0</acceleration>
-          <wrench>-2e-06 -0 -0 0 -0 0</wrench>
+          <acceleration>-3.9e-05 -0 -0 0 -0 0</acceleration>
+          <wrench>-3e-06 -0 -0 0 -0 0</wrench>
         </link>
         <link name='base_link'>
           <pose>0 0 0.85 0 -0 0</pose>
-          <velocity>-0 0 -0 0 -0 0</velocity>
-          <acceleration>-0 0 -0 0 -0 0</acceleration>
-          <wrench>-0 0 -0 0 -0 0</wrench>
+          <velocity>-0 0 0 0 -0 0</velocity>
+          <acceleration>0 -0 0 0 -0 0</acceleration>
+          <wrench>0 -0 0 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -977,7 +977,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-9.15247 2.07089 27.8866 0 1.2218 -0.480408</pose>
+        <pose>5.88419 4.41012 7.63778 0 0.5738 -2.75641</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -1127,6 +1127,11 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
     </light>
   </world>
 </sdf>

@@ -1,14 +1,13 @@
-#include <tuple>
-#include <cmath>
+#pragma once
 #include <Eigen/Dense>
 #include <array>
+#include <cmath>
+#include <tuple>
 
 class Transform {
-public:
+  public:
     // 输入参数为当前坐标系相对于世界坐标系的位姿
-    Transform(double x, double y, double z, double roll, double pitch, double yaw) {
-        Reset(x, y, z, roll, pitch, yaw);
-    }
+    Transform(double x, double y, double z, double roll, double pitch, double yaw) { Reset(x, y, z, roll, pitch, yaw); }
 
     void Reset(double x, double y, double z, double roll, double pitch, double yaw) {
         Eigen::Matrix4d T = Eigen::Matrix4d::Identity();
@@ -16,24 +15,14 @@ public:
         Eigen::Matrix4d Ry = Eigen::Matrix4d::Identity();
         Eigen::Matrix4d Rz = Eigen::Matrix4d::Identity();
 
-        Rx << 1, 0, 0, 0,
-              0, cos(roll), -sin(roll), 0,
-              0, sin(roll), cos(roll), 0,
-              0, 0, 0, 1;
+        Rx << 1, 0, 0, 0, 0, cos(roll), -sin(roll), 0, 0, sin(roll), cos(roll), 0, 0, 0, 0, 1;
 
-        Ry << cos(pitch), 0, sin(pitch), 0,
-              0, 1, 0, 0,
-              -sin(pitch), 0, cos(pitch), 0,
-              0, 0, 0, 1;
+        Ry << cos(pitch), 0, sin(pitch), 0, 0, 1, 0, 0, -sin(pitch), 0, cos(pitch), 0, 0, 0, 0, 1;
 
-        Rz << cos(yaw), -sin(yaw), 0, 0,
-              sin(yaw), cos(yaw), 0, 0,
-              0, 0, 1, 0,
-              0, 0, 0, 1;
+        Rz << cos(yaw), -sin(yaw), 0, 0, sin(yaw), cos(yaw), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1;
 
         T = Rz * Ry * Rx;
         T.block<3, 1>(0, 3) << x, y, z;
-        
 
         SelfToWorldMat = T;
     }
@@ -45,24 +34,14 @@ public:
         Eigen::Matrix4d Ry = Eigen::Matrix4d::Identity();
         Eigen::Matrix4d Rz = Eigen::Matrix4d::Identity();
 
-        Rx << 1, 0, 0, 0,
-              0, cos(roll), -sin(roll), 0,
-              0, sin(roll), cos(roll), 0,
-              0, 0, 0, 1;
+        Rx << 1, 0, 0, 0, 0, cos(roll), -sin(roll), 0, 0, sin(roll), cos(roll), 0, 0, 0, 0, 1;
 
-        Ry << cos(pitch), 0, sin(pitch), 0,
-              0, 1, 0, 0,
-              -sin(pitch), 0, cos(pitch), 0,
-              0, 0, 0, 1;
+        Ry << cos(pitch), 0, sin(pitch), 0, 0, 1, 0, 0, -sin(pitch), 0, cos(pitch), 0, 0, 0, 0, 1;
 
-        Rz << cos(yaw), -sin(yaw), 0, 0,
-              sin(yaw), cos(yaw), 0, 0,
-              0, 0, 1, 0,
-              0, 0, 0, 1;
+        Rz << cos(yaw), -sin(yaw), 0, 0, sin(yaw), cos(yaw), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1;
 
         T = Rz * Ry * Rx;
         T.block<3, 1>(0, 3) << x, y, z;
-        
 
         Eigen::Matrix4d worldT = SelfToWorldMat * T;
 
@@ -85,24 +64,14 @@ public:
         Eigen::Matrix4d Ry = Eigen::Matrix4d::Identity();
         Eigen::Matrix4d Rz = Eigen::Matrix4d::Identity();
 
-        Rx << 1, 0, 0, 0,
-              0, cos(roll), -sin(roll), 0,
-              0, sin(roll), cos(roll), 0,
-              0, 0, 0, 1;
+        Rx << 1, 0, 0, 0, 0, cos(roll), -sin(roll), 0, 0, sin(roll), cos(roll), 0, 0, 0, 0, 1;
 
-        Ry << cos(pitch), 0, sin(pitch), 0,
-              0, 1, 0, 0,
-              -sin(pitch), 0, cos(pitch), 0,
-              0, 0, 0, 1;
+        Ry << cos(pitch), 0, sin(pitch), 0, 0, 1, 0, 0, -sin(pitch), 0, cos(pitch), 0, 0, 0, 0, 1;
 
-        Rz << cos(yaw), -sin(yaw), 0, 0,
-              sin(yaw), cos(yaw), 0, 0,
-              0, 0, 1, 0,
-              0, 0, 0, 1;
+        Rz << cos(yaw), -sin(yaw), 0, 0, sin(yaw), cos(yaw), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1;
 
         T = Rz * Ry * Rx;
         T.block<3, 1>(0, 3) << x, y, z;
-        
 
         Eigen::Matrix4d selfT = SelfToWorldMat.inverse() * T;
 
@@ -118,6 +87,6 @@ public:
         return {selfX, selfY, selfZ, selfRoll, selfPitch, selfYaw};
     }
 
-private:
+  private:
     Eigen::Matrix4d SelfToWorldMat;
 };

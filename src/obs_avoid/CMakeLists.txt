@@ -15,7 +15,7 @@ find_package(ament_cmake REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(moveit_visual_tools REQUIRED)
-
+find_package(std_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 if(BUILD_TESTING)
@@ -37,6 +37,12 @@ ament_target_dependencies(
 )
 target_include_directories(test_moveit PUBLIC include)
 
+add_executable(avoid_obs src/avoid_obs.cpp src/moveit_utils.cpp)
+ament_target_dependencies(
+  avoid_obs
+  rclcpp moveit_ros_planning_interface moveit_visual_tools std_msgs
+)
+target_include_directories(avoid_obs PUBLIC include)
 
 add_executable(test_transform test/test_transform.cpp)
 target_link_libraries(test_transform PUBLIC Eigen3::Eigen)
@@ -46,7 +52,7 @@ target_include_directories(test_transform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
 
 # install cpp exe file
 install(TARGETS
-  test_moveit
+  test_moveit avoid_obs
   DESTINATION lib/${PROJECT_NAME}
 )
 
