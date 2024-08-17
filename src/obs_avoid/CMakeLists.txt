@@ -44,9 +44,9 @@ ament_target_dependencies(
 )
 target_include_directories(avoid_obs PUBLIC include)
 
-add_executable(test_transform test/test_transform.cpp)
-target_link_libraries(test_transform PUBLIC Eigen3::Eigen)
-target_include_directories(test_transform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# add_executable(test_transform test/test_transform.cpp)
+# target_link_libraries(test_transform PUBLIC Eigen3::Eigen)
+# target_include_directories(test_transform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 

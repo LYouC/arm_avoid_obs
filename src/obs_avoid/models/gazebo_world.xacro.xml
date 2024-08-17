@@ -92,7 +92,7 @@
     </spherical_coordinates>
     <model name='rm_65_description'>
       <joint name='fixed' type='fixed'>
-        <pose relative_to='__model__'>0 0 1.0 0 -0 0</pose>
+        <pose relative_to='__model__'>0 0 0.85 0 -0 0</pose>
         <parent>world</parent>
         <child>base_link</child>
       </joint>
@@ -115,7 +115,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>file:///home/lyouc/ros2_project/arm_avoid_obs/install/rm_description/share/rm_description/meshes/rm_65_arm/base_link.STL</uri>
+              <uri>file://$(find rm_description)/meshes/rm_65_arm/base_link.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -137,7 +137,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>file:///home/lyouc/ros2_project/arm_avoid_obs/install/rm_description/share/rm_description/meshes/rm_65_arm/base_link.STL</uri>
+              <uri>file://$(find rm_description)/meshes/rm_65_arm/base_link.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -559,209 +559,209 @@
       <is_static>1</is_static>
     </model>
     <model name='Table'>
-        <static>1</static>
-        <link name='link'>
-            <collision name='surface'>
-            <pose>0 0 1 0 -0 0</pose>
-            <geometry>
-                <box>
-                <size>1.5 0.8 0.03</size>
-                </box>
-            </geometry>
-            <surface>
-                <friction>
-                <ode>
-                    <mu>0.6</mu>
-                    <mu2>0.6</mu2>
-                </ode>
-                <torsional>
-                    <ode/>
-                </torsional>
-                </friction>
-                <contact>
+      <static>1</static>
+      <link name='link'>
+        <collision name='surface'>
+          <pose>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
                 <ode/>
-                </contact>
-                <bounce/>
-            </surface>
-            <max_contacts>10</max_contacts>
-            </collision>
-            <visual name='visual1'>
-            <pose>0 0 1 0 -0 0</pose>
-            <geometry>
-                <box>
-                <size>1.5 0.8 0.03</size>
-                </box>
-            </geometry>
-            <material>
-                <diffuse>1 1 1 1</diffuse>
-                <script>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                <name>Gazebo/Wood</name>
-                </script>
-                <pbr>
-                <metal>
-                    <albedo_map>model://$(find obs_avoid)/models/Table/Table_Diffuse.jpg</albedo_map>
-                </metal>
-                </pbr>
-            </material>
-            </visual>
-            <collision name='front_left_leg'>
-            <pose>0.68 0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-                <contact>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual1'>
+          <pose>0 0 1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+            <pbr>
+              <metal>
+                <albedo_map>model://$(find obs_avoid)/models/Table/Table_Diffuse.jpg</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+        <collision name='front_left_leg'>
+          <pose>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
                 <ode/>
-                </contact>
-                <bounce/>
-                <friction>
-                <torsional>
-                    <ode/>
-                </torsional>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_left_leg'>
+          <pose>0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='front_right_leg'>
+          <pose>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
                 <ode/>
-                </friction>
-            </surface>
-            </collision>
-            <visual name='front_left_leg'>
-            <pose>0.68 0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <material>
-                <diffuse>0.5 0.5 0.5 1</diffuse>
-                <script>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                <name>Gazebo/Grey</name>
-                </script>
-            </material>
-            </visual>
-            <collision name='front_right_leg'>
-            <pose>0.68 -0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-                <contact>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_right_leg'>
+          <pose>0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_right_leg'>
+          <pose>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
                 <ode/>
-                </contact>
-                <bounce/>
-                <friction>
-                <torsional>
-                    <ode/>
-                </torsional>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_right_leg'>
+          <pose>-0.68 -0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='back_left_leg'>
+          <pose>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
                 <ode/>
-                </friction>
-            </surface>
-            </collision>
-            <visual name='front_right_leg'>
-            <pose>0.68 -0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <material>
-                <diffuse>0.5 0.5 0.5 1</diffuse>
-                <script>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                <name>Gazebo/Grey</name>
-                </script>
-            </material>
-            </visual>
-            <collision name='back_right_leg'>
-            <pose>-0.68 -0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-                <contact>
-                <ode/>
-                </contact>
-                <bounce/>
-                <friction>
-                <torsional>
-                    <ode/>
-                </torsional>
-                <ode/>
-                </friction>
-            </surface>
-            </collision>
-            <visual name='back_right_leg'>
-            <pose>-0.68 -0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <material>
-                <diffuse>0.5 0.5 0.5 1</diffuse>
-                <script>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                <name>Gazebo/Grey</name>
-                </script>
-            </material>
-            </visual>
-            <collision name='back_left_leg'>
-            <pose>-0.68 0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <max_contacts>10</max_contacts>
-            <surface>
-                <contact>
-                <ode/>
-                </contact>
-                <bounce/>
-                <friction>
-                <torsional>
-                    <ode/>
-                </torsional>
-                <ode/>
-                </friction>
-            </surface>
-            </collision>
-            <visual name='back_left_leg'>
-            <pose>-0.68 0.38 0.5 0 -0 0</pose>
-            <geometry>
-                <cylinder>
-                <radius>0.02</radius>
-                <length>1</length>
-                </cylinder>
-            </geometry>
-            <material>
-                <diffuse>0.5 0.5 0.5 1</diffuse>
-                <script>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                <name>Gazebo/Grey</name>
-                </script>
-            </material>
-            </visual>
-            <self_collide>0</self_collide>
-            <enable_wind>0</enable_wind>
-            <kinematic>0</kinematic>
-        </link>
-        <pose>1e-06 0 0 0 -0 0</pose>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='back_left_leg'>
+          <pose>-0.68 0.38 0.5 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
     </model>
     <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh'>
       <link name='link_0'>
@@ -858,48 +858,58 @@
       <pose>-0.428962 -1.17876 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>266 822000000</sim_time>
-      <real_time>56 916007493</real_time>
-      <wall_time>1723195282 911033481</wall_time>
-      <iterations>56727</iterations>
+      <sim_time>1883 997000000</sim_time>
+      <real_time>672 107744601</real_time>
+      <wall_time>1723804606 773781343</wall_time>
+      <iterations>671418</iterations>
+      <model name='Table'>
+        <pose>0.068097 -0.477258 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0.068097 -0.477258 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh'>
-        <pose>0.3726 -0.491085 1.01421 0.023933 -0.043097 0.064211</pose>
+        <pose>0.190997 -0.266349 1.01409 0.024817 -0.034262 0.064434</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.3726 -0.491085 1.01421 0.023933 -0.043097 0.064211</pose>
+          <pose>0.190997 -0.266349 1.01409 0.024817 -0.034262 0.064434</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.0005 -0.000366 19.58 -0.48882 0.574694 -1e-06</acceleration>
-          <wrench>-0.0005 -0.000366 19.58 0 -0 0</wrench>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_0'>
-        <pose>0.576371 -0.094627 1.01427 0.021768 -0.046011 0.002445</pose>
+        <pose>-0.007669 -0.196171 1.0141 0.024839 -0.034206 0.002772</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>0.576371 -0.094627 1.01427 0.021768 -0.046011 0.002445</pose>
+          <pose>-0.007669 -0.196171 1.0141 0.024839 -0.034206 0.002772</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.000129 0.000615 19.5793 0.714561 0.22973 -2e-06</acceleration>
-          <wrench>-0.000129 0.000615 19.5793 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_1'>
-        <pose>0.47848 0.356928 1.01541 0.04829 0.018219 0.010487</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>0.47848 0.356928 1.01541 0.04829 0.018219 0.010487</pose>
-          <velocity>-9e-06 -1.7e-05 -0.009945 0.040786 -0.022507 -7e-06</velocity>
           <acceleration>0 0 -9.8 -0 -0 -0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
+      <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_0_clone'>
+        <pose>-0.22631 -0.25071 1.01412 0.025846 -0.034003 0.002676</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>-0.22631 -0.25071 1.01412 0.025846 -0.034003 0.002676</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.01206 -0.002181 0.001792 -0.02583 -0.176898 0.118319</acceleration>
+          <wrench>-0.01206 -0.002181 0.001792 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='camera'>
-        <pose>-0.376811 -2.16326 0.049992 -8e-06 3.2e-05 -1e-06</pose>
+        <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-0.376811 -2.16326 0.049992 -8e-06 3.2e-05 -1e-06</pose>
-          <velocity>0.001592 0.000388 -0.007776 -0.007764 0.031832 -0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -0.98 0 -0 0</wrench>
+          <pose>0 -1.2 1.25 0 -0 1.57</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -913,77 +923,152 @@
         </link>
       </model>
       <model name='rm_65_description'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 -0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Link1'>
-          <pose>0 0 0.2405 0 -0 4e-06</pose>
-          <velocity>0 -0 0 0 -0 0</velocity>
-          <acceleration>0 -0 -7e-06 0 -0 0</acceleration>
-          <wrench>0 -0 -4e-06 0 -0 0</wrench>
+          <pose>-0 0 1.0905 0 -0 8.6e-05</pose>
+          <velocity>-0 -0 0 0 -0 0</velocity>
+          <acceleration>-0 -0 -0 0 -0 0</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
         </link>
         <link name='Link2'>
-          <pose>0 -0 0.2405 -1.57082 -1.57078 -3.14155</pose>
-          <velocity>0 -0 0 0 -0 0</velocity>
-          <acceleration>-8e-06 -1e-06 -7e-06 0 -0 0</acceleration>
-          <wrench>-7e-06 -1e-06 -6e-06 0 -0 0</wrench>
+          <pose>-0 -0 1.0905 1.57081 -1.57076 8.1e-05</pose>
+          <velocity>0 0 -0 0 -0 0</velocity>
+          <acceleration>1.7e-05 0 -0 0 -0 0</acceleration>
+          <wrench>1.4e-05 0 -0 0 -0 0</wrench>
         </link>
         <link name='Link3'>
-          <pose>-5e-06 -0 0.4965 -1.5708 1.6e-05 -3.14158</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>-1.5e-05 -1e-06 -7e-06 0 -0 0</acceleration>
-          <wrench>-4e-06 -0 -2e-06 0 -0 0</wrench>
+          <pose>9e-06 0 1.3465 -1.5708 -2.1e-05 -3.1415</pose>
+          <velocity>0 0 -0 0 -0 0</velocity>
+          <acceleration>2.8e-05 0 -0 0 -0 0</acceleration>
+          <wrench>8e-06 0 -0 0 -0 0</wrench>
         </link>
         <link name='Link4'>
-          <pose>-8e-06 -0 0.7065 4e-06 1.6e-05 -3.14158</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>-1.7e-05 -1e-06 -8e-06 0 -0 0</acceleration>
-          <wrench>-4e-06 -0 -2e-06 0 -0 0</wrench>
+          <pose>1.3e-05 0 1.5565 4e-06 -2.1e-05 -3.14146</pose>
+          <velocity>0 0 -0 0 -0 0</velocity>
+          <acceleration>2.8e-05 0 -0 0 -0 0</acceleration>
+          <wrench>7e-06 0 -0 0 -0 0</wrench>
         </link>
         <link name='Link5'>
-          <pose>-8e-06 -0 0.7065 -1.5708 2.7e-05 -3.14158</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>-3.1e-05 -1e-06 -9e-06 0 -0 0</acceleration>
-          <wrench>-7e-06 -0 -2e-06 0 -0 0</wrench>
+          <pose>1.3e-05 0 1.5565 -1.5708 -4e-06 -3.14146</pose>
+          <velocity>0 0 -0 0 -0 0</velocity>
+          <acceleration>1.5e-05 0 -0 0 -0 0</acceleration>
+          <wrench>3e-06 0 -0 0 -0 0</wrench>
         </link>
         <link name='Link6'>
-          <pose>-1.2e-05 -0 0.8505 4e-06 2.7e-05 -3.14158</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>-4.8e-05 -2e-06 -1e-05 0 -0 0</acceleration>
-          <wrench>-3e-06 -0 -1e-06 0 -0 0</wrench>
+          <pose>1.4e-05 0 1.7005 4e-06 -4e-06 -3.14138</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-2e-06 -0 -0 0 -0 0</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
         </link>
         <link name='base_link'>
-          <pose>0 0 0 0 -0 0</pose>
-          <velocity>-0 -0 0 0 -0 0</velocity>
-          <acceleration>0 -0 -7e-06 0 -0 0</acceleration>
-          <wrench>0 -0 -6e-06 0 -0 0</wrench>
+          <pose>0 0 0.85 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -0 0 -0 0</acceleration>
+          <wrench>0 0 -0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='test'>
-        <pose>0.691716 -0.033817 0 0 -0 1.58814</pose>
-        <scale>1 1 1</scale>
-        <model name='Table'>
-          <pose>0.691716 -0.033816 0 0 -0 1.58814</pose>
-          <scale>1 1 1</scale>
-          <link name='link'>
-            <pose>0.691716 -0.033816 0 0 -0 1.58814</pose>
-            <velocity>0 0 0 0 -0 0</velocity>
-            <acceleration>0 0 0 0 -0 0</acceleration>
-            <wrench>0 0 0 0 -0 0</wrench>
-          </link>
-        </model>
-      </model>
       <light name='sun'>
-        <pose>0 0 10 0 -0 0</pose>
+        <pose>0 -2 3.87541 0.000979 0.011393 -1.34448</pose>
+      </light>
+      <light name='user_point_light_0'>
+        <pose>0.188261 -5.64395 1 0 -0 0</pose>
       </light>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>-1.23952 -4.10625 8.45342 0 1.3058 0.556035</pose>
+        <pose>0.323921 -0.830818 4.01989 0 1.41779 2.24359</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_1'>
+    <model name='camera'>
+      <joint name='fixed' type='fixed'>
+        <pose relative_to='__model__'>0 -1.2 1.25 0 -0 1.57</pose>
+        <parent>world</parent>
+        <child>link</child>
+      </joint>
+      <pose>0 0 0 0 -0 0</pose>
+      <link name='link'>
+        <pose relative_to='fixed'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.000166667</ixx>
+            <iyy>0.000166667</iyy>
+            <izz>0.000166667</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='depth'>
+          <always_on>1</always_on>
+          <update_rate>10</update_rate>
+          <pose>0 0 0 0 -0 0</pose>
+          <camera name='camera'>
+            <horizontal_fov>1.4</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>B8G8R8</format>
+            </image>
+            <depth_camera>
+              <output>depths</output>
+            </depth_camera>
+            <clip>
+              <near>0.05</near>
+              <far>20</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+            <vertical_fov>1.0</vertical_fov>
+          </camera>
+          <plugin name='intel_realsense_d430_depth_driver' filename='libgazebo_ros_camera.so'>
+            <camera_name>camera</camera_name>
+            <frame_name>link</frame_name>
+            <hack_baseline>0.07</hack_baseline>
+            <min_depth>0.05</min_depth>
+            <max_depth>20</max_depth>
+          </plugin>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='Weston_No_22_Cajun_Jerky_Tonic_12_fl_oz_nLj64ZnGwDh_0_clone'>
       <link name='link_0'>
         <visual name='visual'>
           <geometry>
@@ -1028,70 +1113,25 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>-0.785194 -0.342966 0 0 -0 0</pose>
+      <pose>-0.421355 -0.639407 1.01411 0.024855 -0.035182 0.002771</pose>
     </model>
-    <model name='camera'>
-      <pose>-0.376813 -2.16326 0.05 0 -0 0</pose>
-      <link name='link'>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>0.000166667</ixx>
-            <iyy>0.000166667</iyy>
-            <izz>0.000166667</izz>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-          </inertia>
-          <pose>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name='camera' type='camera'>
-          <camera>
-            <horizontal_fov>1.047</horizontal_fov>
-            <image>
-              <width>320</width>
-              <height>240</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
+    <light name='user_point_light_0' type='point'>
+      <pose>0.188261 -5.64395 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
   </world>
 </sdf>
