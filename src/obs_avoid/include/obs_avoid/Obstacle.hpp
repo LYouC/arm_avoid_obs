@@ -47,6 +47,8 @@ public:
 
     Eigen::Vector3f obsModulationEllipsoid(Eigen::Vector3f x, Eigen::Vector3f xd, bool bContour);
 
+    bool WriteToFile(const std::string& filename);
+
 private:
 
     void computeBasisMatrix(Eigen::Vector3f x);

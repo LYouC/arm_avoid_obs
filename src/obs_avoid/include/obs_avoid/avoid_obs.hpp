@@ -6,7 +6,6 @@
 #include "obs_avoid/moveit_utils.hpp"
 #include "obs_avoid/transform.hpp"
 #include "obs_avoid/Obstacle.hpp"
-#include <rclcpp/qos.hpp>
 
 
 class AvoidObsNode : public rclcpp::Node {
@@ -89,6 +88,18 @@ class AvoidObsNode : public rclcpp::Node {
         RCLCPP_WARN(get_logger(), "Move Traj Result: %f, points size: %d", res,waypoints.size());
         enable_msg.data = true;
         m_EnableModelPub->publish(enable_msg);
+
+        // write to file
+        m_ObsAvoidance.WriteToFile("./src/obs_avoid/config/obs.txt");
+        WriteTrajToFile("./src/obs_avoid/config/traj.txt", waypoints);
+    }
+
+    void WriteTrajToFile(const std::string& filename, const std::vector<geometry_msgs::msg::Pose>& waypoints){
+        std::ofstream ofs(filename);
+        for(auto& p : waypoints){
+            ofs << p.position.x << " " << p.position.y << " " << p.position.z << " " << p.orientation.x << " " << p.orientation.y << " " << p.orientation.z << " " << p.orientation.w << std::endl;
+        }
+        ofs.close();
     }
 
     std::vector<geometry_msgs::msg::Pose> MakeWaypoints(

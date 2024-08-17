@@ -21,7 +21,7 @@
             "label": "build and run",
             "detail": "编译并且运行",
             "type": "shell",
-            "command": "source install/setup.bash; ros2 run obs_avoid test_moveit ",
+            "command": "source install/setup.bash; ros2 run obs_avoid avoid_obs ",
             "dependsOn": [
                 "build"
             ],
@@ -33,10 +33,22 @@
             "label": "run",
             "detail": "运行之前编译好的文件",
             "type": "shell",
-            "command": "source install/setup.bash; ros2 run obs_avoid test_moveit ",
+            "command": "source install/setup.bash; ros2 run obs_avoid avoid_obs ",
             "problemMatcher": [
                 "$gcc"
             ]
-        }
+        },
+        {
+            "label": "build and launch",
+            "detail": "编译并且launch",
+            "type": "shell",
+            "command": "source install/setup.bash; ros2 launch obs_avoid start_node.launch.py ",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "dependsOn": [
+                "build"
+            ],
+        },
     ]
 }

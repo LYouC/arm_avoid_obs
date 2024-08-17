@@ -143,6 +143,23 @@ void DSObstacleAvoidance::computeBasisMatrix(Eigen::Vector3f x, int nbObj)
     _basisMatrixes[nbObj].block(1, 1, 2, 2) *= -nv(0) + 1e-5;
 }
 
+bool DSObstacleAvoidance::WriteToFile(const std::string& file_path){
+    std::ofstream file(file_path);
+
+    if (!file.is_open()) {
+        std::cerr << "文件 " << file_path << " 打开失败。" << std::endl;
+        return false;
+    }
+    else{
+        for(auto& item : _obstacles){
+            file << item._x0.x() << " " << item._x0.y() << " " << item._x0.z() << " " ; 
+            file << item._a.x() << " " << item._a.y() << " " << item._a.z()<<std::endl;
+        }
+        file.close();
+    }
+}
+
+// 下面两个函数是用来测试的一些工具方法，和本项目无关。
 std::vector<std::vector<float>> read_file_to_array(const std::string& file_path) {
     std::vector<std::vector<float>> array;
     std::ifstream file(file_path);

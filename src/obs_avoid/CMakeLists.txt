@@ -57,14 +57,14 @@ install(TARGETS
 )
 
 install(
-  DIRECTORY launch models
+  DIRECTORY launch models config
   DESTINATION share/${PROJECT_NAME}
 )
 
 ament_python_install_package(${PROJECT_NAME})
 # install python modules
-file(GLOB_RECURSE PY_LIST ${PROJECT_NAME}/[a-z]*.py) 
-install(PROGRAMS  
+file(GLOB_RECURSE PY_LIST ${PROJECT_NAME}/[a-z]*.py)
+install(PROGRAMS
   ${PY_LIST}
   DESTINATION lib/${PROJECT_NAME}
 )
