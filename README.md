@@ -41,6 +41,8 @@ xacro src/obs_avoid/models/gazebo_world.xacro.xml -o src/obs_avoid/models/gazebo
 
 启动
 
+> 启动仿真环境后如果发现太暗了，请点击左上方的场景面板，选择scene，然后去掉阴影选项
+
 ```bash
 source install/setup.bash
 ros2 launch obs_avoid start_gazebo.launch.py    # 启动仿真环境

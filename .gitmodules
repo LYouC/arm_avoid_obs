@@ -1,3 +1,4 @@
 [submodule "src/ros2_rm_robot"]
 	path = src/ros2_rm_robot
 	url = https://github.com/LYouC/ros2_rm_robot.git
+	branch = humble
