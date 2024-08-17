@@ -19,6 +19,11 @@
   <depend>cv_bridge</depend>
   <depend>xacro</depend>
   <depend>gazebo_ros</depend>
+  <depend>ros2_control</depend>
+  <depend>gazebo_ros2_control</depend>
+  <depend>ros2_controllers</depend>
+  <depend>gazebo_plugins</depend>
+  <depend>gazebo_ros_pkgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

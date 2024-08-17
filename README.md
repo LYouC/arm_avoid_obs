@@ -23,7 +23,7 @@ git submodule update --init --recursive         # 克隆子模块
 ``` bash
 cd arm_avoid_obs
 rosdep install --from-paths src --ignore-src -r -y
-pip install onnxruntime onnx pycocotools
+pip install onnxruntime onnx pycocotools numpy==1.26.4 (如果是2.0以上版本的话可能不行)
 ```
 
 编译
